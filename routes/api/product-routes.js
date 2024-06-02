@@ -3,20 +3,38 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
-router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+// GET request to obtain all products while including associated Categories and Tags
+router.get('/', async (req, res) => {
+  try {
+    const productData = await Product.findAll({
+      include: [{ model: Category }, { model: Tag }]
+    });
+    res.status(200).json(productData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
-// get one product
-router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+// GET request to obtain one product by its `id` value while including its associated categories and tags
+router.get('/:id', async (req, res) => {
+  try {
+    const productData = await Product.findByPk(req.params.id, {
+      include: [{ model: Category }, { model: Tag }],
+    });
+
+    if (!productData) {
+      res.status(404).json({ message: 'There is no product found with that ID.' });
+      return;
+    }
+
+    res.status(200).json(productData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
-// create new product
-router.post('/', (req, res) => {
+// POST request to create a new product
+router.post('/', async (req, res) => {
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -47,7 +65,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// update product
+// PUT request to update a product by its 'id' value
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -92,8 +110,24 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
-});
+// DELETE request to delete a product by its 'id' value
+router.delete('/:id', async (req, res) => {
+    try {
+      const product = await Product.findByPk(req.params.id);
+  
+      if (!product) {
+        res.status(404).json({ message: 'Product not found.' });
+        return;
+      }
+  
+      await ProductTag.destroy({ where: { product_id: req.params.id } });
+  
+      await Product.destroy({ where: { id: req.params.id } });
+  
+      res.status(200).json({ message: 'Product successfully deleted.' });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
 
 module.exports = router;
