@@ -4,23 +4,27 @@
         
 ## Description
             
-This project is an E-commerce Back-End, which takes a working Express.js API and configures it to use Sequelize to interact with a [PostgreSQL](https://www.postgresql.org/) database.
+This project is an E-commerce Back-End application which takes a working Express.js API and configures it to use [Sequelize](https://sequelize.org/) to interact with a [PostgreSQL](https://www.postgresql.org/) database.
 
-I built this application as a way to...
+I built this application as a way to manage data in a complex database spread throughout several relational tables. By using this application within the context of a fake "E-commerce store", we can use the API client [Insomnia](https://insomnia.rest/) to either view, add, update or delete data to reflect the store's stock of items. 
 
-By completing this project, I expanded my knowledge of...
+By completing this project, I expanded my knowledge of SQL database logic and the benefits of using Sequelize to create it as opposed to the standard SQL language. 
 
 ### Video walkthrough showing application functionality:
 
-To view a video walkthrough of how the application's API routes have been set up via the API Client Insomnia, watch [a video demonstration here](https://www.google.com). 
+To view a video walkthrough of how to initialise the database, seed the data and access the data via its API routes using Insomnia, watch [a video demonstration here](https://drive.google.com/file/d/11Bm-GAol6_m6TaQyZ9pbrfdVX-BeEbIb/view?usp=sharing). 
 
-### Screenshot of application showing user input prompts:
+### Screenshots of using the application's API routes to manage data:
 
-The screenshot below shows the application being run in the API client Insomnia to return certain data.  
+The screenshots below show the application's API routes being called in Insomnia to return certain data.  
 
-![Screenshot of application's API routes tested in Insomnia - GET route to return all categories]()
+- GET route to display all tags:
+![Screenshot of application's API routes tested in Insomnia - GET route to display all tags](./Assets/13-Challenge_SS_GET-request-all-tags.png)
 
-![Screenshot of application's API routes tested in Insomnia - DELETE route to delete a category]()
+- POST route to add a new product
+![Screenshot of application's API routes tested in Insomnia - POST route to add a new product](./Assets/13-Challenge_SS_POST-request-new-product.png)
+
+To understand how all routes work, watch the full video walkthrough linked above or [here](https://drive.google.com/file/d/11Bm-GAol6_m6TaQyZ9pbrfdVX-BeEbIb/view?usp=sharing). 
             
 ## Table of Contents
             
@@ -35,7 +39,7 @@ The screenshot below shows the application being run in the API client Insomnia 
 
 To install this application, you'll need to clone the repository to your local machine. [Refer to this guide from GitHub if you need help.](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository/)
 
-Once cloned, you will need to navigate to the project's folder in your terminal and run the following command to install the necessary dependencies: `npm i` or `npm install`.
+Once cloned, you will need to navigate to the project's folder in your terminal and run the following command to install the necessary dependencies: `npm install`.
 
 Next, you will need PostgreSQL installed on your computer to initialise the database. [Visit PostgreSQL's website for links to download and installation instructions.](https://www.postgresql.org/)
 
@@ -57,7 +61,7 @@ Then, you can run the server locally by entering the following:
 
 5. `node server.js`.
 
-6. The last step to use the application and test the API routes using Insomnia. Check the screenshots above for what kind of routes you can run.
+6. If everything was installed and run correctly, you should be able to test the API routes using Insomnia now. Check the [walkthrough video here to see how you can view, add, update or delete data using these routes.](https://drive.google.com/file/d/11Bm-GAol6_m6TaQyZ9pbrfdVX-BeEbIb/view?usp=sharing)
             
 ## License
             
